@@ -32,7 +32,7 @@ Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
 #### Part 2: Optimize Frames per Second in pizza.html
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js.
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
@@ -53,3 +53,27 @@ The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstra
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
 * <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+
+### Optimizations made to the project
+In order to achieve an acceptable `PageSpeed` score for Mobile and Desktop, I've done the following steps:
+1. Minified and compressed large assets.
+2. Optimized the `Critical Rendering Path` and eliminated `Render-Blocking` JavaScript and CSS:
+  * Added `@media` queries in `<link>` to unblock rendering for CSS.
+  * Used `async` to unblock parser work for JavaScript.
+
+In addition, I've made optimizations to `views/js/main.js` to avoid causing `Forced Synchronous Layout` when resizing pizza:
+1. Removed the `determineDx` function as it is not efficient.
+2. Added the slider `newwidth` calculator below instead of `determineDx` function.
+3. Removed the layout calls by using `%` instead of fixed `px`.
+4. Eliminated the need to recalculate style after layout call over and over.
+5. Moved the redundant DOM selector out of the loop and assigned it to a variable.
+6. Used the faster `getElementsByClassName` instead of `querySelectorAll`.
+
+Moreover, to render the Pizzeria website with a consistent frame-rate at `60fps` when scrolling, I've made the following modifications to `views/js/main.js`:
+1. Moved the `scrollTop` layout call out of the loop to avoid `Forced Synchronous Layout`.
+2. Used the faster `translateX` instead of changing the `left` property.
+3. Used a function `scrollIt()` and a global variable `isScrolling` to fire the animation.
+4. Used `requestAnimationFrame` to animate properly.
+5. Used the faster `getElementsByClassName` instead of `querySelectorAll`.
+6. Used the faster `getElementById` instead of `querySelector`.
+7. Used `window.onscroll` instead of `addEventListener`.

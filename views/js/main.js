@@ -424,9 +424,9 @@ var resizePizzas = function(size) {
   /****************************** SAMI EDIT: ****************************************
    * Edited the code so it is not causing forced synchronous layout:
    * 1- Removed the determineDx function as it is not efficient.
-   * 2- Added the slider newwidth calculater below instead of determineDx function.
+   * 2- Added the slider newwidth calculator below instead of determineDx function.
    * 3- Removed the layout calls by using % instead of fixed px.
-   * 4- Elemenated the need to recalculate style after layout call over and over.
+   * 4- Eliminated the need to recalculate style after layout call over and over.
    * 5- Moved the redundant DOM selector out of the loop and assigned it to a variable.
    * 6- Used the faster getElementsByClassName instead of querySelectorAll.
    *********************************************************************************/
