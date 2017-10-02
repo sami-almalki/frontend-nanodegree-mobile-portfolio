@@ -500,6 +500,8 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
  * 5- Used the faster getElementsByClassName instead of querySelectorAll.
  * 6- Used the faster getElementById instead of querySelector.
  * 7- Used window.onscroll instead of addEventListener.
+ * 8- Splitted the loop into 2 loops, one for calculating phases, the other for positioning.
+ * 9- Minimized the number of sliding pizzas depending on height using window.innerHeight
  *********************************************************************************/
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
@@ -512,10 +514,14 @@ function updatePositions() {
 
   var items = document.getElementsByClassName('mover');
   var scrollTop = (document.documentElement.scrollTop || document.body.scrollTop) / 1250;
+  var phases = [];
+
+  for (var i = 0; i < 5; i++) {
+    phases.push(Math.sin(scrollTop + i) * 100);
+  }
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(scrollTop + (i % 5));
-    items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
+    items[i].style.transform = 'translateX(' + phases[i % 5] + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -546,7 +552,10 @@ window.onscroll = scrollIt;
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var rows = Math.floor(window.innerHeight/200);
+  var pizzas = rows * cols;
+  var movingPizzas1 = document.getElementById("movingPizzas1");
+  for (var i = 0; i < pizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -554,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("movingPizzas1").appendChild(elem);
+    movingPizzas1.appendChild(elem);
   }
   requestAnimationFrame(updatePositions);
 });

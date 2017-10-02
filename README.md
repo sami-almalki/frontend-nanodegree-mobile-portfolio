@@ -77,5 +77,7 @@ Moreover, to render the Pizzeria website with a consistent frame-rate at `60fps`
 5. Used the faster `getElementsByClassName()` instead of `querySelectorAll()`.
 6. Used the faster `getElementById()` instead of `querySelector()`.
 7. Used `window.onscroll` instead of `addEventListener()`.
+8. Splitted the loop into 2 loops, one for calculating `phases`, the other for positioning.
+9. Minimized the number of sliding pizzas depending on height using `window.innerHeight`.
 
 [Wanna test the code? Click here!](https://sami-almalki.github.io/frontend-nanodegree-mobile-portfolio/)
