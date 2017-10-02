@@ -58,7 +58,7 @@ The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstra
 In order to achieve an acceptable `PageSpeed` score for Mobile and Desktop, I've done the following steps:
 1. Minified and compressed large assets.
 2. Optimized the `Critical Rendering Path` and eliminated `Render-Blocking` JavaScript and CSS:
-  * Added `@media` queries in `<link>` to unblock rendering for CSS.
+  * Inlined `Above-The-Fold` style to avoid render-blocking for CSS.
   * Used `async` to avoid parser-blocking for JavaScript.
 
 In addition, I've made optimizations to `views/js/main.js` to avoid causing `Forced Synchronous Layout` in `changePizzaSizes()` function:
