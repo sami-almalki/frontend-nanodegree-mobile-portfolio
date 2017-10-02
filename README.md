@@ -77,3 +77,5 @@ Moreover, to render the Pizzeria website with a consistent frame-rate at `60fps`
 5. Used the faster `getElementsByClassName()` instead of `querySelectorAll()`.
 6. Used the faster `getElementById()` instead of `querySelector()`.
 7. Used `window.onscroll` instead of `addEventListener()`.
+
+[Wanna test the code? Click here!](https://sami-almalki.github.io/frontend-nanodegree-mobile-portfolio/)
