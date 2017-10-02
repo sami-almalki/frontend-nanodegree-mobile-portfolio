@@ -59,21 +59,21 @@ In order to achieve an acceptable `PageSpeed` score for Mobile and Desktop, I've
 1. Minified and compressed large assets.
 2. Optimized the `Critical Rendering Path` and eliminated `Render-Blocking` JavaScript and CSS:
   * Added `@media` queries in `<link>` to unblock rendering for CSS.
-  * Used `async` to unblock parser work for JavaScript.
+  * Used `async` to avoid parser-blocking for JavaScript.
 
-In addition, I've made optimizations to `views/js/main.js` to avoid causing `Forced Synchronous Layout` when resizing pizza:
-1. Removed the `determineDx` function as it is not efficient.
-2. Added the slider `newwidth` calculator below instead of `determineDx` function.
+In addition, I've made optimizations to `views/js/main.js` to avoid causing `Forced Synchronous Layout` in `changePizzaSizes()` function:
+1. Removed the `determineDx()` function as it is not efficient.
+2. Added the slider value calculator in `changePizzaSizes()` instead of `determineDx()`.
 3. Removed the layout calls by using `%` instead of fixed `px`.
 4. Eliminated the need to recalculate style after layout call over and over.
 5. Moved the redundant DOM selector out of the loop and assigned it to a variable.
-6. Used the faster `getElementsByClassName` instead of `querySelectorAll`.
+6. Used the faster `getElementsByClassName()` instead of `querySelectorAll()`.
 
 Moreover, to render the Pizzeria website with a consistent frame-rate at `60fps` when scrolling, I've made the following modifications to `views/js/main.js`:
 1. Moved the `scrollTop` layout call out of the loop to avoid `Forced Synchronous Layout`.
-2. Used the faster `translateX` instead of changing the `left` property.
+2. Used the faster `translateX()` instead of changing the `left` property.
 3. Used a function `scrollIt()` and a global variable `isScrolling` to fire the animation.
-4. Used `requestAnimationFrame` to animate properly.
-5. Used the faster `getElementsByClassName` instead of `querySelectorAll`.
-6. Used the faster `getElementById` instead of `querySelector`.
-7. Used `window.onscroll` instead of `addEventListener`.
+4. Used `requestAnimationFrame()` to animate properly.
+5. Used the faster `getElementsByClassName()` instead of `querySelectorAll()`.
+6. Used the faster `getElementById()` instead of `querySelector()`.
+7. Used `window.onscroll` instead of `addEventListener()`.
